@@ -5,9 +5,13 @@ if (process.env.NODE_ENV != 'production') {
 
 // import dependencies
 const express = require('express')
+const connectDB = require('./config/connectDB')
 
 // create express app
 const app = express();
+
+// Connect to database
+connectDB();
 
 // Routing
 app.get('/', (req, res) => {
@@ -15,4 +19,4 @@ app.get('/', (req, res) => {
 });
 
 // Start server
-app.listen(process.env.PORT);
+app.listen(process.env.PORT || 3000);
