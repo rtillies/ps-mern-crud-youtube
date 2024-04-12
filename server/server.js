@@ -54,11 +54,12 @@ app.post("/notes", async (req, res) => {
     title: title,
     body: body,
   });
+
   // respond with new note
   res.json({ note: note });
 });
 
-// post new note
+// update existing note
 app.put("/notes/:id", async (req, res) => {
   // get id from URL
   const id = req.params.id;
@@ -78,6 +79,17 @@ app.put("/notes/:id", async (req, res) => {
 
   // respond with note
   res.json({ note: note });
+})
+
+app.delete('/notes/:id', async (req, res) => {
+  // get id from URL
+  const id = req.params.id;
+
+  // delete record
+  const note = await Note.findByIdAndDelete(id)
+
+  // respond with deleted note
+  res.json({note: note})
 })
 
 // Start server
