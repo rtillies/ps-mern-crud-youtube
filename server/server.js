@@ -45,7 +45,7 @@ app.get("/notes/:id", async (req, res) => {
 
 // post new note
 app.post("/notes", async (req, res) => {
-  // get the sent data from request body
+  // get data from request body
   const title = req.body.title;
   const body = req.body.body;
 
@@ -57,6 +57,28 @@ app.post("/notes", async (req, res) => {
   // respond with new note
   res.json({ note: note });
 });
+
+// post new note
+app.put("/notes/:id", async (req, res) => {
+  // get id from URL
+  const id = req.params.id;
+
+  // get data from request body
+  const title = req.body.title;
+  const body = req.body.body;
+  
+  // find and update note using id
+  await Note.findByIdAndUpdate(id, {
+    title: title,
+    body: body,
+  });
+
+  // Get updated note
+  const note = await Note.findById(id)
+
+  // respond with note
+  res.json({ note: note });
+})
 
 // Start server
 app.listen(process.env.PORT || 3000);
