@@ -101,6 +101,7 @@ function App() {
             })}
         </div>
 
+        {updateForm._id && (
         <div className="update-note">
           <h2>Update Note</h2>
           <form action="">
@@ -119,7 +120,7 @@ function App() {
             ></textarea>
             <button type="submit">Update Note</button>
           </form>
-        </div>
+        </div>)}
 
         <div className="create-note">
           <h2>Create Note</h2>
