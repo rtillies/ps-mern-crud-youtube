@@ -53,7 +53,8 @@ function App() {
 
   const deleteNote = async (_id) => {
     // delete note
-    const res = await axios.delete(`${URL}/${_id}`);
+    const url_id = `${URL}/${_id}`
+    const res = await axios.delete(url_id);
     console.log(res);
 
     // update state
@@ -80,6 +81,30 @@ function App() {
     setUpdateForm({ title: note.title, body: note.body, _id: note._id });
   };
 
+  const updateNote = async (e) => {
+    e.preventDefault();
+
+    const {title, body, _id} = updateForm
+    const url_id = `${URL}/${_id}`
+
+    // send update request
+    const res = await axios.put(url_id, {title, body});
+    console.log(res);
+
+    // update state
+    const newNotes = [...notes]
+    const noteIndex = notes.findIndex(note => {
+      return note._id === updateForm._id
+    })
+    newNotes[noteIndex] = res.data.note;
+
+    setNotes(newNotes)
+
+    // clear form
+    setUpdateForm({ id: null, title: "", body: "" });
+    console.log(res);
+  }
+
   return (
     <>
       <div className="App">
@@ -104,7 +129,7 @@ function App() {
         {updateForm._id && (
         <div className="update-note">
           <h2>Update Note</h2>
-          <form action="">
+          <form onSubmit={updateNote}>
             <input
               type="text"
               name="title"
@@ -126,7 +151,7 @@ function App() {
 
         <div className="create-note">
           <h2>Create Note</h2>
-          <form action="" method="post" onSubmit={createNote}>
+          <form onSubmit={createNote}>
             <input
               type="text"
               name="title"
