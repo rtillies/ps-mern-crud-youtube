@@ -122,6 +122,8 @@ function App() {
           </form>
         </div>)}
 
+        {!updateForm._id && (
+
         <div className="create-note">
           <h2>Create Note</h2>
           <form action="" method="post" onSubmit={createNote}>
@@ -140,7 +142,7 @@ function App() {
             ></textarea>
             <button type="submit">Create Note</button>
           </form>
-        </div>
+        </div>)}
       </div>
     </>
   );
