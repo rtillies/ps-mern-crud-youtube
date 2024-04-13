@@ -1,7 +1,14 @@
 const User = require('../models/user')
 
-function signup(req, res) {
+async function signup(req, res) {
+  // get email and password from req body
+  const {email, password} = req.body
   
+  // create user with data
+  await User.create({email, password})
+
+  // response
+  res.sendStatus(200);
 }
 
 function login(req, res) {
