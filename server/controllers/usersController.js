@@ -36,6 +36,7 @@ async function login(req, res) {
   if (!passwordMatch) return res.sendStatus(401) // unauthorized
   
   // create jwt token
+  // const exp = Date.now() + 1000 * 5 // 5 seconds
   const exp = Date.now() + 1000 * 60 * 60 * 24 * 30; // 30 days
   const token = jwt.sign({ sub: user._id, exp }, process.env.SECRET);
 
