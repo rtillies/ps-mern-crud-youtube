@@ -27,9 +27,9 @@ app.get("/", (req, res) => {
 
 app.get("/notes", notesController.getNotes);
 app.get("/notes/:id", notesController.getNote);
-app.get("/notes/", notesController.createNote);
-app.get("/notes/:id", notesController.updateNote);
-app.get("/notes/:id", notesController.deleteNote);
+app.post("/notes/", notesController.createNote);
+app.put("/notes/:id", notesController.updateNote);
+app.delete("/notes/:id", notesController.deleteNote);
 
 // Start server
 app.listen(process.env.PORT || 3000);
