@@ -4,6 +4,11 @@ import "./App.css";
 
 function App() {
   const [notes, setNotes] = useState(null);
+  const [createForm, setCreateForm] = useState({
+    title: '',
+    body: '',
+  })
+
   useEffect(() => {
     getNotes();
   }, []);
@@ -36,8 +41,8 @@ function App() {
         <div className="create-note">
           <h2>Create Note</h2>
           <form action="" method="post">
-            <input type="text" name="title" />
-            <textarea name="body" cols="30" rows="10"></textarea>
+            <input type="text" name="title" value={createForm.title} />
+            <textarea name="body" cols="30" rows="10" value={createForm.body}></textarea>
             <button type="submit">Create Note</button>
           </form>
         </div>
