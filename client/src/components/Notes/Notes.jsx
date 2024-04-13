@@ -1,4 +1,5 @@
 import notesStore from "../../stores/notesStore";
+import Note from "../Note/Note";
 
 export default function Notes() {
   const store = notesStore();
@@ -9,15 +10,16 @@ export default function Notes() {
       {store.notes &&
         store.notes.map((note) => {
           return (
-            <div key={note._id}>
-              <h3>{note.title}</h3>
-              <button onClick={() => store.toggleUpdate(note)}>
-                Update note
-              </button>
-              <button onClick={() => store.deleteNote(note._id)}>
-                Delete note
-              </button>
-            </div>
+            <Note note={note} key={note._id} />
+            // <div key={note._id}>
+            //   <h3>{note.title}</h3>
+            //   <button onClick={() => store.toggleUpdate(note)}>
+            //     Update note
+            //   </button>
+            //   <button onClick={() => store.deleteNote(note._id)}>
+            //     Delete note
+            //   </button>
+            // </div>
           );
         })}
     </div>
