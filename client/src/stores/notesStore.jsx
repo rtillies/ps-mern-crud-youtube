@@ -36,6 +36,25 @@ const notesStore = create((set) => ({
     })
     // console.log({ name, value });
   },
+
+  createNote: async (e) => {
+    e.preventDefault();
+
+    const {createForm, notes} = notesStore.getState();
+
+    // create note
+    const res = await axios.post(URL, createForm);
+    // console.log(res);
+
+    // update state
+    // clear form
+    set({
+      notes: [...notes, res.data.note],
+      createForm: { title: "", body: "", }
+    })
+    // setNotes([...notes, res.data.note]);
+    // setCreateForm({ title: "", body: "" });
+  },
 }))
 
 export default notesStore;

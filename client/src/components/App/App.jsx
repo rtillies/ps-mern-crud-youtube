@@ -41,17 +41,17 @@ function App() {
   };
 
   const createNote = async (e) => {
-    e.preventDefault();
+    // e.preventDefault();
 
-    // create note
-    const res = await axios.post(URL, createForm);
+    // // create note
+    // const res = await axios.post(URL, createForm);
 
-    // update state
-    setNotes([...notes, res.data.note]);
+    // // update state
+    // setNotes([...notes, res.data.note]);
 
-    // clear form
-    setCreateForm({ title: "", body: "" });
-    console.log(res);
+    // // clear form
+    // setCreateForm({ title: "", body: "" });
+    // console.log(res);
   };
 
   const deleteNote = async (_id) => {
@@ -154,7 +154,7 @@ function App() {
 
         <div className="create-note">
           <h2>Create Note</h2>
-          <form onSubmit={createNote}>
+          <form onSubmit={store.createNote}>
             <input
               type="text"
               name="title"
