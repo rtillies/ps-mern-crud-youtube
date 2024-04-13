@@ -6,6 +6,7 @@ if (process.env.NODE_ENV != "production") {
 // import dependencies
 const express = require("express");
 const cors = require("cors");
+const cookieParser = require("cookie-parser")
 const connectDB = require("./config/connectDB");
 const notesController = require("./controllers/notesController")
 const usersController = require("./controllers/usersController")
@@ -14,6 +15,7 @@ const usersController = require("./controllers/usersController")
 // create and configure express app
 const app = express();
 app.use(express.json());
+app.use(cookieParser())
 app.use(cors());
 
 // Connect to database
