@@ -1,7 +1,8 @@
 import {create} from 'zustand'
 import axios from "axios";
 
-const URL = "http://localhost:3000/notes";
+// const URL = "http://localhost:3000/notes";
+const URL = "https://ps-mern-crud-youtube.onrender.com/notes";
 
 const notesStore = create((set) => ({
   notes: null,
