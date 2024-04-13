@@ -1,4 +1,5 @@
 const bcrypt = require("bcryptjs");
+const jwt = require('jsonwebtoken');
 const User = require("../models/user");
 
 async function signup(req, res) {
@@ -35,9 +36,11 @@ async function login(req, res) {
   if (!passwordMatch) return res.sendStatus(401) // unauthorized
   
   // create jwt token
-  
+  const exp = Date.now() + 1000 * 60 * 60 * 24 * 30; // 30 days
+  const token = jwt.sign({ sub: user._id, exp }, process.env.SECRET);
 
   // send token
+  res.json({token})
 }
 
 function logout(req, res) {}
