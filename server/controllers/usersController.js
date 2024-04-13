@@ -40,7 +40,7 @@ async function login(req, res) {
   const token = jwt.sign({ sub: user._id, exp }, process.env.SECRET);
 
   // set cookie
-  res.cookie("Authorication", token, {
+  res.cookie("Authorization", token, {
     expires: new Date(exp),
     httpOnly: true,
     sameSite: 'lax',
@@ -53,8 +53,14 @@ async function login(req, res) {
 
 function logout(req, res) {}
 
+function checkAuth(req, res) {
+  console.log(req.user);
+  res.sendStatus(200);
+}
+
 module.exports = {
   signup,
   login,
   logout,
+  checkAuth,
 };
