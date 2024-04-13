@@ -74,6 +74,15 @@ function App() {
             })}
         </div>
 
+        <div className="update-note">
+          <h2>Update Note</h2>
+          <form action="">
+            <input type="text" name='title' />
+            <textarea name="body" cols="30" rows="5"></textarea>
+            <button type="submit">Update Note</button>
+          </form>
+        </div>
+
         <div className="create-note">
           <h2>Create Note</h2>
           <form action="" method="post" onSubmit={createNote}>
@@ -86,7 +95,7 @@ function App() {
             <textarea
               name="body"
               cols="30"
-              rows="10"
+              rows="5"
               value={createForm.body}
               onChange={updateCreateFormField}
             ></textarea>
