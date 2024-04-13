@@ -1,24 +1,31 @@
-const User = require('../models/user')
+const bcrypt = require("bcryptjs");
+const User = require("../models/user");
 
 async function signup(req, res) {
-  // get email and password from req body
-  const {email, password} = req.body
-  
-  // create user with data
-  await User.create({email, password})
+  try {
+    // get email and password from req body
+    const { email, password } = req.body;
 
-  // response
-  res.sendStatus(200);
+    // hash password
+    const hashedPassword = bcrypt.hashSync(password, 8);
+
+    // create user with data
+    await User.create({ email, password: hashedPassword });
+
+    // response
+    res.sendStatus(200); // OK
+  } catch (e) { // probably duplicate email
+    console.log(e.message);
+    res.sendStatus(400); // Bad Request
+  }
 }
 
-function login(req, res) {
+function login(req, res) {}
 
-}
-
-function logout(req, res) {
-
-}
+function logout(req, res) {}
 
 module.exports = {
-  signup, login, logout
-}
+  signup,
+  login,
+  logout,
+};
