@@ -32,12 +32,12 @@ function App() {
   };
 
   const updateCreateFormField = (e) => {
-    const { name, value } = e.target;
-    setCreateForm({
-      ...createForm,
-      [name]: value,
-    });
-    console.log({ name, value });
+    // const { name, value } = e.target;
+    // setCreateForm({
+    //   ...createForm,
+    //   [name]: value,
+    // });
+    // console.log({ name, value });
   };
 
   const createNote = async (e) => {
@@ -158,15 +158,15 @@ function App() {
             <input
               type="text"
               name="title"
-              value={createForm.title}
-              onChange={updateCreateFormField}
+              value={store.createForm.title}
+              onChange={store.updateCreateFormField}
             />
             <textarea
               name="body"
               cols="30"
               rows="5"
-              value={createForm.body}
-              onChange={updateCreateFormField}
+              value={store.createForm.body}
+              onChange={store.updateCreateFormField}
             ></textarea>
             <button type="submit">Create Note</button>
           </form>

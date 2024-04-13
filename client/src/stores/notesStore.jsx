@@ -1,8 +1,15 @@
 import {create} from 'zustand'
 import axios from "axios";
 
+const URL = "http://localhost:3000/notes";
+
 const notesStore = create((set) => ({
   notes: null,
+
+  createForm: {
+    title: '',
+    body: '',
+  },
 
   getNotes: async () => {
     // get notes
@@ -14,7 +21,21 @@ const notesStore = create((set) => ({
       notes: res.data.notes
     })
     // setNotes(res.data.notes);
-  }
+  },
+
+  updateCreateFormField: (e) => {
+    const { name, value } = e.target;
+
+    set((state) => {
+      return {
+        createForm: {
+          ...state.createForm, 
+          [name]: value,
+        }
+      }
+    })
+    // console.log({ name, value });
+  },
 }))
 
 export default notesStore;
