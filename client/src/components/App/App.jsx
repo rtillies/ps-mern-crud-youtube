@@ -85,27 +85,27 @@ function App() {
   };
 
   const updateNote = async (e) => {
-    e.preventDefault();
+    // e.preventDefault();
 
-    const {title, body, _id} = updateForm
-    const url_id = `${URL}/${_id}`
+    // const {title, body, _id} = updateForm
+    // const url_id = `${URL}/${_id}`
 
-    // send update request
-    const res = await axios.put(url_id, {title, body});
-    console.log(res);
+    // // send update request
+    // const res = await axios.put(url_id, {title, body});
+    // console.log(res);
 
-    // update state
-    const newNotes = [...notes]
-    const noteIndex = notes.findIndex(note => {
-      return note._id === updateForm._id
-    })
-    newNotes[noteIndex] = res.data.note;
+    // // update state
+    // const newNotes = [...notes]
+    // const noteIndex = notes.findIndex(note => {
+    //   return note._id === updateForm._id
+    // })
+    // newNotes[noteIndex] = res.data.note;
 
-    setNotes(newNotes)
+    // setNotes(newNotes)
 
-    // clear form
-    setUpdateForm({ id: null, title: "", body: "" });
-    console.log(res);
+    // // clear form
+    // setUpdateForm({ id: null, title: "", body: "" });
+    // console.log(res);
   }
 
   return (
@@ -132,7 +132,7 @@ function App() {
         {store.updateForm._id && (
         <div className="update-note">
           <h2>Update Note</h2>
-          <form onSubmit={updateNote}>
+          <form onSubmit={store.updateNote}>
             <input
               type="text"
               name="title"

@@ -112,7 +112,35 @@ const notesStore = create((set) => ({
     // setUpdateForm({ title: note.title, body: note.body, _id: note._id });
   },
 
+  updateNote: async (e) => {
+    e.preventDefault();
 
+    const {updateForm, notes} = notesStore.getState();
+    const {title, body, _id} = updateForm
+    const url_id = `${URL}/${_id}`
+
+    // send update request
+    const res = await axios.put(url_id, {title, body});
+    console.log(res);
+
+    // update state
+    const newNotes = [...notes]
+    const noteIndex = notes.findIndex(note => {
+      return note._id === _id
+    })
+    newNotes[noteIndex] = res.data.note;
+
+    set({
+      notes: newNotes,
+      updateForm: { id: null, title: "", body: "", }
+    })
+
+    // setNotes(newNotes)
+
+    // // clear form
+    // setUpdateForm({ id: null, title: "", body: "" });
+    // console.log(res);
+  },
 
 }))
 
