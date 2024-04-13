@@ -1,13 +1,20 @@
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
+import axios from 'axios'
 import './App.css'
 
 function App() {
-  const [notes, setNotes] = useState(null)
+  const [notes, setNotes] = useState(null);
+  useEffect(() => {
+    getNotes()
+  }, [])
 
-  const getNotes = () => {
+  const getNotes = async () => {
+    const URL = 'http://localhost:3000/notes'
     // get notes
+    const res = axios.get(URL)
 
     // set on state
+    console.log(res);
   }
 
   return (
