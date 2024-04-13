@@ -10,6 +10,7 @@ const cookieParser = require("cookie-parser")
 const connectDB = require("./config/connectDB");
 const notesController = require("./controllers/notesController")
 const usersController = require("./controllers/usersController")
+const requireAuth = require("./middleware/requireAuth")
 // const Note = require("./models/note");
 
 // create and configure express app
@@ -21,8 +22,7 @@ app.use(cors());
 // Connect to database
 connectDB();
 
-// Routing
-
+/** ROUTING **/
 // Base route
 app.get("/", (req, res) => {
   res.json({ hello: "world" });
@@ -39,6 +39,7 @@ app.delete("/notes/:id", notesController.deleteNote);
 app.post('/signup', usersController.signup)
 app.post('/login', usersController.login)
 app.get('/logout', usersController.logout)
+app.get('/check-auth', requireAuth, usersController.checkAuth)
 
 // Start server
 app.listen(process.env.PORT || 3000);
