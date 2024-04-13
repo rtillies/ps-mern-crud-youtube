@@ -3,6 +3,7 @@ import axios from "axios";
 import "./App.css";
 
 function App() {
+  const URL = "http://localhost:3000/notes";
   const [notes, setNotes] = useState(null);
   const [createForm, setCreateForm] = useState({
     title: "",
@@ -14,7 +15,6 @@ function App() {
   }, []);
 
   const getNotes = async () => {
-    const URL = "http://localhost:3000/notes";
 
     // get notes
     const res = await axios.get(URL);
@@ -31,6 +31,20 @@ function App() {
     })
     console.log({name, value});
   };
+
+  const createNote = async (e) => {
+    e.preventDefault();
+
+    // create note
+    const res = await axios.post(URL, createForm)
+
+    // update state
+    setNotes([...notes, res.data.note])
+
+    // clear form
+    setCreateForm({title: '', body: ''})
+    console.log(res);
+  }
 
   return (
     <>
@@ -49,7 +63,7 @@ function App() {
 
         <div className="create-note">
           <h2>Create Note</h2>
-          <form action="" method="post">
+          <form action="" method="post" onSubmit={createNote}>
             <input
               type="text"
               name="title"
