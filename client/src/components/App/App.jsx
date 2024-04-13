@@ -3,6 +3,7 @@ import axios from "axios";
 import "./App.css";
 import notesStore from "../../stores/notesStore";
 import Notes from "../Notes/Notes";
+import UpdateForm from "../UpdateForm";
 
 function App() {
   // Zustand store
@@ -115,27 +116,8 @@ function App() {
   return (
     <>
       <div className="App">
-        <Notes />        
-        {store.updateForm._id && (
-        <div className="update-note">
-          <h2>Update Note</h2>
-          <form onSubmit={store.updateNote}>
-            <input
-              type="text"
-              name="title"
-              value={store.updateForm.title}
-              onChange={store.handleUpdateFieldChange}
-            />
-            <textarea
-              name="body"
-              cols="30"
-              rows="5"
-              value={store.updateForm.body}
-              onChange={store.handleUpdateFieldChange}
-            ></textarea>
-            <button type="submit">Update Note</button>
-          </form>
-        </div>)}
+        <Notes />
+        <UpdateForm />
 
         {!store.updateForm._id && (
         <div className="create-note">
