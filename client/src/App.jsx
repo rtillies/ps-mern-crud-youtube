@@ -24,8 +24,12 @@ function App() {
     setNotes(res.data.notes);
   };
 
-  const updateCreateFormField = () => {
-    console.log("hello");
+  const updateCreateFormField = (e) => {
+    const {name, value} = e.target;
+    setCreateForm({
+      ...createForm, [name]: value,
+    })
+    console.log({name, value});
   };
 
   return (
