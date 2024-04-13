@@ -2,12 +2,18 @@ import { useState } from 'react'
 import './App.css'
 
 function App() {
-  const [count, setCount] = useState(0)
+  const [notes, setNotes] = useState(null)
+
+  const getNotes = () => {
+    // get notes
+
+    // set on state
+  }
 
   return (
     <>
       <div className="App">
-
+        <h1>Hello World</h1>
       </div>
     </>
   )
