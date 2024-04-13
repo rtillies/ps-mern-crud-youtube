@@ -39,8 +39,16 @@ async function login(req, res) {
   const exp = Date.now() + 1000 * 60 * 60 * 24 * 30; // 30 days
   const token = jwt.sign({ sub: user._id, exp }, process.env.SECRET);
 
+  // set cookie
+  res.cookie("Authorication", token, {
+    expires: new Date(exp),
+    httpOnly: true,
+    sameSite: 'lax',
+    secure: process.env.NODE_ENV === 'production',
+  })
   // send token
-  res.json({token})
+  // res.json({token})
+  res.sendStatus(200); // ok
 }
 
 function logout(req, res) {}
