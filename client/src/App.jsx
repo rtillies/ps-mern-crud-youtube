@@ -9,6 +9,11 @@ function App() {
     title: "",
     body: "",
   });
+  const [updateForm, setUpdateForm] = useState({
+    _id: null,
+    title: "",
+    body: "",
+  });
 
   useEffect(() => {
     getNotes();
@@ -24,39 +29,49 @@ function App() {
   };
 
   const updateCreateFormField = (e) => {
-    const {name, value} = e.target;
+    const { name, value } = e.target;
     setCreateForm({
-      ...createForm, [name]: value,
-    })
-    console.log({name, value});
+      ...createForm,
+      [name]: value,
+    });
+    console.log({ name, value });
   };
 
   const createNote = async (e) => {
     e.preventDefault();
 
     // create note
-    const res = await axios.post(URL, createForm)
+    const res = await axios.post(URL, createForm);
 
     // update state
-    setNotes([...notes, res.data.note])
+    setNotes([...notes, res.data.note]);
 
     // clear form
-    setCreateForm({title: '', body: ''})
+    setCreateForm({ title: "", body: "" });
     console.log(res);
-  }
+  };
 
   const deleteNote = async (_id) => {
     // delete note
-    const res = await axios.delete(`${URL}/${_id}`)
+    const res = await axios.delete(`${URL}/${_id}`);
     console.log(res);
 
     // update state
-    const newNotes = [...notes].filter(note => {
+    const newNotes = [...notes].filter((note) => {
       return note._id !== _id;
-    })
+    });
 
-    setNotes(newNotes)
-  }
+    setNotes(newNotes);
+  };
+
+  const handleUpdateFieldChange = (e) => {
+    const { value, name } = e.target;
+
+    setUpdateForm({
+      ...updateForm,
+      [name]: value,
+    });
+  };
 
   return (
     <>
@@ -68,7 +83,9 @@ function App() {
               return (
                 <div key={note._id}>
                   <h3>{note.title}</h3>
-                  <button onClick={() => deleteNote(note._id)}>Delete note</button>
+                  <button onClick={() => deleteNote(note._id)}>
+                    Delete note
+                  </button>
                 </div>
               );
             })}
@@ -77,8 +94,19 @@ function App() {
         <div className="update-note">
           <h2>Update Note</h2>
           <form action="">
-            <input type="text" name='title' />
-            <textarea name="body" cols="30" rows="5"></textarea>
+            <input
+              type="text"
+              name="title"
+              value={updateForm.title}
+              onChange={handleUpdateFieldChange}
+              />
+            <textarea
+              name="body"
+              cols="30"
+              rows="5"
+              value={updateForm.body}
+              onChange={handleUpdateFieldChange}
+            ></textarea>
             <button type="submit">Update Note</button>
           </form>
         </div>
