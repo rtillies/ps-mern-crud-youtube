@@ -69,19 +69,19 @@ function App() {
   };
 
   const handleUpdateFieldChange = (e) => {
-    const { value, name } = e.target;
+    // const { value, name } = e.target;
 
-    setUpdateForm({
-      ...updateForm,
-      [name]: value,
-    });
+    // setUpdateForm({
+    //   ...updateForm,
+    //   [name]: value,
+    // });
   };
 
   const toggleUpdate = async (note) => {
-    // get current note values
-    console.log(note);
-    // set state
-    setUpdateForm({ title: note.title, body: note.body, _id: note._id });
+    // // get current note values
+    // console.log(note);
+    // // set state
+    // setUpdateForm({ title: note.title, body: note.body, _id: note._id });
   };
 
   const updateNote = async (e) => {
@@ -118,7 +118,7 @@ function App() {
               return (
                 <div key={note._id}>
                   <h3>{note.title}</h3>
-                  <button onClick={() => toggleUpdate(note)}>
+                  <button onClick={() => store.toggleUpdate(note)}>
                     Update note
                   </button>
                   <button onClick={() => store.deleteNote(note._id)}>
@@ -129,29 +129,28 @@ function App() {
             })}
         </div>
 
-        {updateForm._id && (
+        {store.updateForm._id && (
         <div className="update-note">
           <h2>Update Note</h2>
           <form onSubmit={updateNote}>
             <input
               type="text"
               name="title"
-              value={updateForm.title}
-              onChange={handleUpdateFieldChange}
+              value={store.updateForm.title}
+              onChange={store.handleUpdateFieldChange}
             />
             <textarea
               name="body"
               cols="30"
               rows="5"
-              value={updateForm.body}
-              onChange={handleUpdateFieldChange}
+              value={store.updateForm.body}
+              onChange={store.handleUpdateFieldChange}
             ></textarea>
             <button type="submit">Update Note</button>
           </form>
         </div>)}
 
-        {!updateForm._id && (
-
+        {!store.updateForm._id && (
         <div className="create-note">
           <h2>Create Note</h2>
           <form onSubmit={store.createNote}>

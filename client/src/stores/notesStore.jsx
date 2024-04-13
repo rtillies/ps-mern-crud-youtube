@@ -11,6 +11,12 @@ const notesStore = create((set) => ({
     body: '',
   },
 
+  updateForm: {
+    _id: null,
+    title: '',
+    body: '',
+  },
+
   getNotes: async () => {
     // get notes
     const res = await axios.get(URL);
@@ -74,6 +80,39 @@ const notesStore = create((set) => ({
       notes: newNotes,
     })
   },
+
+  handleUpdateFieldChange: (e) => {
+    const { value, name } = e.target;
+
+    // setUpdateForm({
+    //   ...updateForm,
+    //   [name]: value,
+    // });
+    set((state) => {
+      return {
+        updateForm: {
+          ...state.updateForm, 
+          [name]: value,
+        }
+      }
+    })
+  },
+
+  toggleUpdate: async (note) => {
+    // get current note values
+    const {_id, title, body } = note;
+    // console.log(note);
+    // set state
+
+    set({
+      updateForm: {
+        title, body, _id
+      }
+    })
+    // setUpdateForm({ title: note.title, body: note.body, _id: note._id });
+  },
+
+
 
 }))
 
