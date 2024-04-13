@@ -15,7 +15,6 @@ function App() {
   }, []);
 
   const getNotes = async () => {
-
     // get notes
     const res = await axios.get(URL);
 
@@ -46,6 +45,19 @@ function App() {
     console.log(res);
   }
 
+  const deleteNote = async (_id) => {
+    // delete note
+    const res = await axios.delete(`${URL}/${_id}`)
+    console.log(res);
+
+    // update state
+    const newNotes = [...notes].filter(note => {
+      return note._id !== _id;
+    })
+
+    setNotes(newNotes)
+  }
+
   return (
     <>
       <div className="App">
@@ -56,6 +68,7 @@ function App() {
               return (
                 <div key={note._id}>
                   <h3>{note.title}</h3>
+                  <button onClick={() => deleteNote(note._id)}>Delete note</button>
                 </div>
               );
             })}
