@@ -73,6 +73,13 @@ function App() {
     });
   };
 
+  const toggleUpdate = async (note) => {
+    // get current note values
+    console.log(note);
+    // set state
+    setUpdateForm({ title: note.title, body: note.body, _id: note._id });
+  };
+
   return (
     <>
       <div className="App">
@@ -83,6 +90,9 @@ function App() {
               return (
                 <div key={note._id}>
                   <h3>{note.title}</h3>
+                  <button onClick={() => toggleUpdate(note)}>
+                    Update note
+                  </button>
                   <button onClick={() => deleteNote(note._id)}>
                     Delete note
                   </button>
@@ -99,7 +109,7 @@ function App() {
               name="title"
               value={updateForm.title}
               onChange={handleUpdateFieldChange}
-              />
+            />
             <textarea
               name="body"
               cols="30"
