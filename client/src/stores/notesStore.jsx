@@ -55,6 +55,26 @@ const notesStore = create((set) => ({
     // setNotes([...notes, res.data.note]);
     // setCreateForm({ title: "", body: "" });
   },
+
+  deleteNote: async (_id) => {
+    // delete note
+    const url_id = `${URL}/${_id}`
+    const {notes} = notesStore.getState();
+    const res = await axios.delete(url_id);
+
+    // console.log(res);
+
+    // update state
+    const newNotes = notes.filter((note) => {
+      return note._id !== _id;
+    });
+
+    // setNotes(newNotes);
+    set({
+      notes: newNotes,
+    })
+  },
+
 }))
 
 export default notesStore;

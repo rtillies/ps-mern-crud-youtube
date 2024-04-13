@@ -55,17 +55,17 @@ function App() {
   };
 
   const deleteNote = async (_id) => {
-    // delete note
-    const url_id = `${URL}/${_id}`
-    const res = await axios.delete(url_id);
-    console.log(res);
+    // // delete note
+    // const url_id = `${URL}/${_id}`
+    // const res = await axios.delete(url_id);
+    // console.log(res);
 
-    // update state
-    const newNotes = [...notes].filter((note) => {
-      return note._id !== _id;
-    });
+    // // update state
+    // const newNotes = [...notes].filter((note) => {
+    //   return note._id !== _id;
+    // });
 
-    setNotes(newNotes);
+    // setNotes(newNotes);
   };
 
   const handleUpdateFieldChange = (e) => {
@@ -121,7 +121,7 @@ function App() {
                   <button onClick={() => toggleUpdate(note)}>
                     Update note
                   </button>
-                  <button onClick={() => deleteNote(note._id)}>
+                  <button onClick={() => store.deleteNote(note._id)}>
                     Delete note
                   </button>
                 </div>
