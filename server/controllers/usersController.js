@@ -51,7 +51,10 @@ async function login(req, res) {
   res.sendStatus(200); // ok
 }
 
-function logout(req, res) {}
+function logout(req, res) {
+  res.clearCookie("Authorization")
+  res.sendStatus(200);
+}
 
 function checkAuth(req, res) {
   console.log(req.user);
