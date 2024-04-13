@@ -4,19 +4,21 @@ import "./App.css";
 import notesStore from "../../stores/notesStore";
 
 function App() {
-  const URL = "http://localhost:3000/notes";
   const store = notesStore();
 
-  const [notes, setNotes] = useState(null);
-  const [createForm, setCreateForm] = useState({
-    title: "",
-    body: "",
-  });
-  const [updateForm, setUpdateForm] = useState({
-    _id: null,
-    title: "",
-    body: "",
-  });
+  // State
+  // const URL = "http://localhost:3000/notes";
+
+  // const [notes, setNotes] = useState(null);
+  // const [createForm, setCreateForm] = useState({
+  //   title: "",
+  //   body: "",
+  // });
+  // const [updateForm, setUpdateForm] = useState({
+  //   _id: null,
+  //   title: "",
+  //   body: "",
+  // });
 
   useEffect(() => {
     store.getNotes();
