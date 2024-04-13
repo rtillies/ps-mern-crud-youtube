@@ -1,4 +1,5 @@
-import create from 'zustand'
+import {create} from 'zustand'
+import axios from "axios";
 
 const notesStore = create((set) => ({
   notes: null,

@@ -1,9 +1,12 @@
 import { useState, useEffect } from "react";
 import axios from "axios";
 import "./App.css";
+import notesStore from "../../stores/notesStore";
 
 function App() {
   const URL = "http://localhost:3000/notes";
+  const store = notesStore();
+
   const [notes, setNotes] = useState(null);
   const [createForm, setCreateForm] = useState({
     title: "",
@@ -16,7 +19,7 @@ function App() {
   });
 
   useEffect(() => {
-    getNotes();
+    store.getNotes();
   }, []);
 
   const getNotes = async () => {
@@ -110,8 +113,8 @@ function App() {
       <div className="App">
         <div className="notes">
           <h2>Notes</h2>
-          {notes &&
-            notes.map((note) => {
+          {store.notes &&
+            store.notes.map((note) => {
               return (
                 <div key={note._id}>
                   <h3>{note.title}</h3>
