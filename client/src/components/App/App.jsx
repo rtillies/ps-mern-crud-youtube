@@ -20,12 +20,12 @@ function App() {
   }, []);
 
   const getNotes = async () => {
-    // get notes
-    const res = await axios.get(URL);
+    // // get notes
+    // const res = await axios.get(URL);
 
-    // set on state
-    console.log(res);
-    setNotes(res.data.notes);
+    // // set on state
+    // console.log(res);
+    // setNotes(res.data.notes);
   };
 
   const updateCreateFormField = (e) => {
