@@ -22,7 +22,8 @@ export default function LoginForm() {
         onChange={store.updateLoginForm}
       />
       <br />
-      <button type="submit">Login</button>
+      <button type="submit">Login</button><br />
+      <p>Logged in: {store.loggedIn}</p>
     </form>
   );
 }
