@@ -1,14 +1,15 @@
 import { useState, useEffect } from "react";
 import axios from "axios";
-import "./App.css";
 import notesStore from "../../stores/notesStore";
 import Notes from "../Notes/Notes";
 import UpdateForm from "../UpdateForm/UpdateForm";
 import CreateForm from "../CreateForm/CreateForm";
+import "./App.css";
+import NotesPage from "../../pages/NotesPage";
 
 function App() {
   // Zustand store
-  const store = notesStore();
+  // const store = notesStore();
 
   // State
   // const URL = "http://localhost:3000/notes";
@@ -24,9 +25,9 @@ function App() {
   //   body: "",
   // });
 
-  useEffect(() => {
-    store.getNotes();
-  }, []);
+  // useEffect(() => {
+  //   store.getNotes();
+  // }, []);
 
   // const getNotes = async () => {
   //   // // get notes
@@ -117,9 +118,10 @@ function App() {
   return (
     <>
       <div className="App">
-        <Notes />
+        {/* <Notes />
         <UpdateForm />
-        <CreateForm />
+        <CreateForm /> */}
+        <NotesPage />
       </div>
     </>
   );
