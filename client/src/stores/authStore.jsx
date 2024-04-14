@@ -31,6 +31,16 @@ const authStore = create((set) => ({
 
     set({loggedIn: true})
   },
+
+  checkAuth: async() => {
+    try {
+      await axios.get('check-auth', {withCredentials: true})
+      set({loggedIn: true})
+    } catch (error) {
+      set({loggedIn: false})
+    }
+  },
+
 }))
 
 export default authStore;
