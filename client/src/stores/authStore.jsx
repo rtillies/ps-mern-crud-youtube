@@ -1,8 +1,6 @@
 import {create} from 'zustand'
 import axios from "axios";
 
-const PATH = "/notes";
-
 const authStore = create((set) => ({
   loginForm: {
     email: "",
@@ -11,7 +9,6 @@ const authStore = create((set) => ({
 
   updateLoginForm: (e) => {
     const {name, value} = e.target
-    // const {loginForm} = authStore.getState()
 
     set(state => {
       return {
