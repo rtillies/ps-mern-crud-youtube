@@ -22,6 +22,15 @@ const authStore = create((set) => ({
       }
     })
   },
+
+  login: async (e) => {
+    e.preventDefault();
+
+    const {loginForm} = authStore.getState()
+
+    const res = await axios.post('/login', loginForm, {withCredentials: true})
+    console.log(res);
+  },
 }))
 
 export default authStore;
