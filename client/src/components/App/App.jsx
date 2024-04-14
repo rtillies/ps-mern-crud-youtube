@@ -6,6 +6,8 @@ import UpdateForm from "../UpdateForm/UpdateForm";
 import CreateForm from "../CreateForm/CreateForm";
 import "./App.css";
 import NotesPage from "../../pages/NotesPage";
+import {BrowserRouter, Routes, Route} from 'react-router-dom'
+import LoginPage from "../../pages/LoginPage";
 
 function App() {
   // Zustand store
@@ -118,13 +120,19 @@ function App() {
   return (
     <>
       <div className="App">
-        {/* <Notes />
-        <UpdateForm />
-        <CreateForm /> */}
-        <NotesPage />
+        <BrowserRouter>
+          <Routes>
+            <Route index element={<NotesPage />} />
+            <Route path='/login' element={<LoginPage />} />
+          </Routes>
+        </BrowserRouter>
+        
       </div>
     </>
   );
+  // <Notes />
+  // <UpdateForm />
+  // <CreateForm />
 }
 
 export default App;
