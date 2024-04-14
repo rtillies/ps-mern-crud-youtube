@@ -2,7 +2,8 @@ import {create} from 'zustand'
 import axios from "axios";
 
 // const URL = "http://localhost:3000/notes";
-const URL = "https://ps-mern-crud-youtube.onrender.com/notes";
+// const URL = "https://ps-mern-crud-youtube.onrender.com/notes";
+const PATH = "/notes";
 
 const notesStore = create((set) => ({
   notes: null,
@@ -20,7 +21,7 @@ const notesStore = create((set) => ({
 
   getNotes: async () => {
     // get notes
-    const res = await axios.get(URL);
+    const res = await axios.get(PATH);
     // console.log(res);
 
     // set on state
@@ -50,7 +51,7 @@ const notesStore = create((set) => ({
     const {createForm, notes} = notesStore.getState();
 
     // create note
-    const res = await axios.post(URL, createForm);
+    const res = await axios.post(PATH, createForm);
     // console.log(res);
 
     // update state
@@ -65,7 +66,7 @@ const notesStore = create((set) => ({
 
   deleteNote: async (_id) => {
     // delete note
-    const url_id = `${URL}/${_id}`
+    const url_id = `${PATH}/${_id}`
     const {notes} = notesStore.getState();
     const res = await axios.delete(url_id);
 
@@ -118,7 +119,7 @@ const notesStore = create((set) => ({
 
     const {updateForm, notes} = notesStore.getState();
     const {title, body, _id} = updateForm
-    const url_id = `${URL}/${_id}`
+    const url_id = `${PATH}/${_id}`
 
     // send update request
     const res = await axios.put(url_id, {title, body});
