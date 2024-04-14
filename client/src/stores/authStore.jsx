@@ -2,6 +2,8 @@ import {create} from 'zustand'
 import axios from "axios";
 
 const authStore = create((set) => ({
+  loggedIn: null,
+
   loginForm: {
     email: "",
     password: "",
@@ -26,7 +28,8 @@ const authStore = create((set) => ({
     const {loginForm} = authStore.getState()
 
     const res = await axios.post('/login', loginForm, {withCredentials: true})
-    console.log(res);
+
+    set({loggedIn: true})
   },
 }))
 
