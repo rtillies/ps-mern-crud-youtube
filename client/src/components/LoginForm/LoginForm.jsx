@@ -1,11 +1,28 @@
-import React from 'react'
+import React from "react";
+import authStore from "../../stores/authStore";
 
 export default function LoginForm() {
+  const store = authStore();
+
   return (
     <form>
-      <input type="email" name="email" placeholder='email'/><br />
-      <input type="password" name="password" placeholder='password'/><br />
+      <input
+        type="email"
+        name="email"
+        placeholder="email"
+        value={store.loginForm.email}
+        onChange={store.updateLoginForm}
+      />
+      <br />
+      <input
+        type="password"
+        name="password"
+        placeholder="password"
+        value={store.loginForm.password}
+        onChange={store.updateLoginForm}
+      />
+      <br />
       <button type="submit">Login</button>
     </form>
-  )
+  );
 }
