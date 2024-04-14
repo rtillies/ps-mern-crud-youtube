@@ -6,7 +6,7 @@ import UpdateForm from "../UpdateForm/UpdateForm";
 import CreateForm from "../CreateForm/CreateForm";
 import "./App.css";
 import NotesPage from "../../pages/NotesPage";
-import {BrowserRouter, Routes, Route} from 'react-router-dom'
+import {BrowserRouter, Routes, Route, Link} from 'react-router-dom'
 import LoginPage from "../../pages/LoginPage";
 
 function App() {
@@ -121,6 +121,11 @@ function App() {
     <>
       <div className="App">
         <BrowserRouter>
+          <ul>
+            <li><Link to='/'>Home</Link></li>
+            <li><Link to='/login'>Login</Link></li>
+          </ul>
+
           <Routes>
             <Route index element={<NotesPage />} />
             <Route path='/login' element={<LoginPage />} />
