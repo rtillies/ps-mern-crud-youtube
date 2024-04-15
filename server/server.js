@@ -32,11 +32,11 @@ app.get("/", (req, res) => {
 });
 
 // Notes routes
-app.get("/notes", notesController.getNotes);
-app.get("/notes/:id", notesController.getNote);
-app.post("/notes/", notesController.createNote);
-app.put("/notes/:id", notesController.updateNote);
-app.delete("/notes/:id", notesController.deleteNote);
+app.get("/notes", requireAuth, notesController.getNotes);
+app.get("/notes/:id", requireAuth, notesController.getNote);
+app.post("/notes/", requireAuth, notesController.createNote);
+app.put("/notes/:id", requireAuth, notesController.updateNote);
+app.delete("/notes/:id", requireAuth, notesController.deleteNote);
 
 // User routes
 app.post('/signup', usersController.signup)
