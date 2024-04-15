@@ -3,7 +3,7 @@ const Note = require('../models/note')
 // Get all notes
 const getNotes = async (req, res) => {
   // find notes
-  const notes = await Note.find();
+  const notes = await Note.find({user: req.user._id});
 
   // respond with notes
   // res.json({ notes: notes });
@@ -15,8 +15,9 @@ const getNote = async (req, res) => {
   // get id from URL
   const id = req.params.id;
 
-  // find note using id
-  const note = await Note.findById(id);
+  // find note using id and user
+  // const note = await Note.findById(id);
+  const note = await Note.findOne({_id: id, user: req.user._id});
 
   // respond with note
   // res.json({ note: note });
@@ -35,6 +36,7 @@ const createNote = async (req, res) => {
     // title: title,
     // body: body,
     title, body,
+    user: req.user._id
   });
 
   // respond with new note
@@ -53,9 +55,8 @@ const updateNote = async (req, res) => {
   const {title, body} = req.body
   
   // find and update note using id
-  await Note.findByIdAndUpdate(id, {
-    // title: title,
-    // body: body,
+  // await Note.findByIdAndUpdate(id, {
+  await Note.findOneAndUpdate({_id: id, user: req.user._id}, {
     title, body,
   });
 
@@ -72,7 +73,8 @@ const deleteNote = async (req, res) => {
   const id = req.params.id;
 
   // delete record
-  const note = await Note.findByIdAndDelete(id)
+  // const note = await Note.findByIdAndDelete(id)
+  const note = await Note.findOneAndDelete({_id: id, user: req.user._id})
 
   // respond with deleted note
   // res.json({ note: note });
