@@ -3,16 +3,16 @@ import {useNavigate} from 'react-router-dom';
 import authStore from "../../stores/authStore";
 
 export default function SignupForm() {
-  // const store = authStore();
+  const store = authStore();
   // const navigate = useNavigate();
 
-  // const handleSignup = async (e) => {
-  //   e.preventDefault();
-  //   await store.signup();
+  const handleSignup = async (e) => {
+    e.preventDefault();
+    await store.signup();
 
-  //   // Navigate
-  //   navigate('/login')
-  // }
+    // Navigate
+    navigate('/login')
+  }
 
   return (
     <form onSubmit={handleSignup}>
@@ -32,7 +32,7 @@ export default function SignupForm() {
         onChange={store.updateSignupForm}
       />
       <br />
-      <button type="submit">Signup</button><br />
+      <button type="submit">Sign up</button><br />
     </form>
   );
 }

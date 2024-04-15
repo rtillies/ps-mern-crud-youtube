@@ -9,6 +9,11 @@ const authStore = create((set) => ({
     password: "",
   },
 
+  signupForm: {
+    email: "",
+    password: "",
+  },
+
   updateLoginForm: (e) => {
     const {name, value} = e.target
 
@@ -16,6 +21,19 @@ const authStore = create((set) => ({
       return {
         loginForm: {
           ...state.loginForm,
+          [name]: value,
+        }
+      }
+    })
+  },
+
+  updateSignupForm: (e) => {
+    const {name, value} = e.target
+
+    set(state => {
+      return {
+        signupForm: {
+          ...state.signupForm,
           [name]: value,
         }
       }
@@ -38,6 +56,10 @@ const authStore = create((set) => ({
       set({loggedIn: false})
     }
   },
+
+  signup: async() => {
+    console.log('Signup');
+  }
 
 }))
 
