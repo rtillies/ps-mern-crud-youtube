@@ -15,6 +15,7 @@ export default function CreateForm() {
           value={store.createForm.title}
           onChange={store.updateCreateFormField}
         />
+        <br />
         <textarea
           name="body"
           cols="30"
@@ -22,6 +23,7 @@ export default function CreateForm() {
           value={store.createForm.body}
           onChange={store.updateCreateFormField}
         ></textarea>
+        <br />
         <button type="submit">Create Note</button>
       </form>
     </div>

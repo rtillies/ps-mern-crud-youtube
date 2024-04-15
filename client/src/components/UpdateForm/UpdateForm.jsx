@@ -17,6 +17,7 @@ export default function UpdateForm() {
           value={store.updateForm.title}
           onChange={store.handleUpdateFieldChange}
         />
+        <br />
         <textarea
           name="body"
           cols="30"
@@ -24,6 +25,7 @@ export default function UpdateForm() {
           value={store.updateForm.body}
           onChange={store.handleUpdateFieldChange}
         ></textarea>
+        <br />
         <button type="submit">Update Note</button>
       </form>
     </div>
