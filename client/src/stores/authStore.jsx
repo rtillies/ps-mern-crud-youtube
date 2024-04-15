@@ -45,6 +45,14 @@ const authStore = create((set) => ({
     const {loginForm} = authStore.getState()
     const res = await axios.post('/login', loginForm, {withCredentials: true})
 
+    // clear form after submission
+    set({
+      loginForm: {
+        email: '',
+        password: '',
+      }
+    })
+
     set({loggedIn: true})
   },
 
@@ -60,6 +68,14 @@ const authStore = create((set) => ({
   signup: async() => {
     const {signupForm} = authStore.getState()
     const res = await axios.post('/signup', signupForm, {withCredentials: true})
+
+    // clear form after submission
+    set({
+      signupForm: {
+        email: '',
+        password: '',
+      }
+    })
 
     console.log(res);
   }
