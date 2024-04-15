@@ -11,7 +11,7 @@ export default function SignupForm() {
     await store.signup();
 
     // Navigate
-    navigate('/login')
+    // navigate('/login')
   }
 
   return (
