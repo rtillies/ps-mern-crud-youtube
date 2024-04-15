@@ -43,8 +43,10 @@ const authStore = create((set) => ({
   login: async (e) => {
     // e.preventDefault(); handled elsewhere
     const {loginForm} = authStore.getState()
-    const res = await axios.post('/login', loginForm, {withCredentials: true})
-
+    // const res = await axios.post('/login', loginForm, {withCredentials: true})
+    const res = await axios.post('/login', loginForm) 
+    // withCredentials handled globally in main.jsx
+    
     // clear form after submission
     set({
       loginForm: {
@@ -58,7 +60,9 @@ const authStore = create((set) => ({
 
   checkAuth: async() => {
     try {
-      await axios.get('/check-auth', {withCredentials: true})
+      // await axios.get('/check-auth', {withCredentials: true})
+      await axios.get('/check-auth') 
+      // withCredentials handled globally in main.jsx
       set({loggedIn: true})
     } catch (error) {
       set({loggedIn: false})
@@ -67,7 +71,9 @@ const authStore = create((set) => ({
 
   signup: async() => {
     const {signupForm} = authStore.getState()
-    const res = await axios.post('/signup', signupForm, {withCredentials: true})
+    const res = await axios.post('/signup', signupForm) 
+    // withCredentials handled globally in main.jsx
+    // const res = await axios.post('/signup', signupForm, {withCredentials: true})
 
     // clear form after submission
     set({
@@ -81,7 +87,8 @@ const authStore = create((set) => ({
   },
 
   logout: async () => {
-    axios.get('/logout', {withCredentials: true})
+    // axios.get('/logout', {withCredentials: true})
+    axios.get('/logout') // withCredentials handled globally in main.jsx
     set({
       loggedIn: false,
     })

@@ -6,6 +6,7 @@ import axios from 'axios'
 
 // axios.defaults.baseURL = "https://ps-mern-crud-youtube.onrender.com";
 axios.defaults.baseURL = "http://localhost:3000"
+axios.defaults.withCredentials = true
 
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
