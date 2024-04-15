@@ -1,7 +1,15 @@
-import React from 'react'
+import {useEffect} from 'react'
+import authStore from '../stores/authStore'
 
 export default function LogoutPage() {
+  const store = authStore()
+  useEffect(() => {
+    store.logout()
+  }, [])
+  
   return (
-    <div>Logout Page</div>
+    <>
+      <h2>You are logged out</h2>
+    </>
   )
 }
