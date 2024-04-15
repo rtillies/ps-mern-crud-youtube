@@ -4,14 +4,14 @@ import authStore from "../../stores/authStore";
 
 export default function SignupForm() {
   const store = authStore();
-  // const navigate = useNavigate();
+  const navigate = useNavigate();
 
   const handleSignup = async (e) => {
     e.preventDefault();
     await store.signup();
 
-    // Navigate
-    // navigate('/login')
+    // Navigate to login form
+    navigate('/login')
   }
 
   return (
